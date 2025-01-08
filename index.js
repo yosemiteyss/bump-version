@@ -7,6 +7,7 @@ try {
   const tag = core.getInput('tag')
   const packagePath = core.getInput('path')
   const commit = core.getBooleanInput('commit')
+  const commitLockFile = core.getBooleanInput('commit_lock_file')
   const branchToPush = core.getInput('branch_to_push')
 
   const parsedTag = tag.replace('v', '')
@@ -30,6 +31,11 @@ try {
       )
     )
     core.debug(execSync(`git config --global user.name "github-actions[bot]"`))
+
+    if (commitLockFile === true) {
+      core.debug(execSync('npm install'))
+      core.debug(execSync('git diff --cached --name-only'))
+    }
 
     core.debug(execSync(`git add .`))
     core.debug(
