@@ -12,7 +12,7 @@ try {
 
   const parsedTag = tag.replace('v', '')
 
-  core.info(`Parsin tag ${tag} to ${parsedTag}!`)
+  core.info(`Parsed tag ${tag} to ${parsedTag}!`)
 
   const packageString = fs.readFileSync(packagePath, {
     encoding: 'utf-8',
